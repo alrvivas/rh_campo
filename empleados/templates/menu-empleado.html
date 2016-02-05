@@ -1,0 +1,47 @@
+<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="add">
+<li class="mdl-menu__item-padding">
+		<a href="#" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color--red-500 mdl-shadow--4dp" id="contrasena">
+		<i class="material-icons mdl-color-text--white" role="presentation">lock</i>	          
+		</a>
+		      			
+	</li>
+<li class="mdl-menu__item-padding">
+		<a href="{{empleado.get_absolute_url_editar}}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color--light-green-500 mdl-shadow--4dp" id="personales">
+		<i class="material-icons mdl-color-text--white" role="presentation">face</i>            
+		</a>
+			
+	</li>
+	<li class="mdl-menu__item-padding">
+		<form action=""  method="post" role="form" enctype="multipart/form-data">{% csrf_token %}
+		<input  name="empleado" id="empleado" type="hidden" value="{{empleado.pk}}">
+		<input type="hidden" name="titulo" id="titulo" value="Periodo vacacional" required/>
+		<input type="hidden" name="descripcion" id="descripcion" value="Correspondiente a" required/>
+		<input type="hidden" name="fecha_inicio" id="fecha_inicio" value="2017-02-14" required/>
+		<input type="hidden" name="fecha_fin" id="fecha_fin" value="2017-02-16" required/>
+							
+		<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color--blue-500 mdl-shadow--4dp" id="vacaciones">
+		<i class="material-icons mdl-color-text--white" role="presentation">event_available</i>       
+		</button>
+		</form>      			
+	</li>			  	
+	<li class="mdl-menu__item-padding">
+		<a href="{{empleado.get_absolute_url_editar_empresariales}}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color--amber-500 mdl-shadow--4dp" id="empresariales">
+		<i class="material-icons mdl-color-text--white" role="presentation">store</i>            
+		</a>
+	</li>
+</ul>
+<div class="mdl-tooltip mdl-tooltip--left" for="contrasena">
+	Contraseña
+</div>	
+<div class="mdl-tooltip mdl-tooltip--left" for="personales">
+	Datos<br />Personales
+</div>
+<div class="mdl-tooltip mdl-tooltip--left" for="vacaciones">
+	Vacaciones
+</div>	
+<div class="mdl-tooltip mdl-tooltip--left" for="empresariales">
+	Datos<br />Empresariales
+</div>
+<div class="mdl-tooltip mdl-tooltip--left" for="add">
+	Editar
+</div>	

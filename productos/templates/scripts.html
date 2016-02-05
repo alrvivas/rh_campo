@@ -1,0 +1,16 @@
+{% load static from staticfiles %}
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+<script src="{% static "bower_components/material-design-lite/src/tooltip/tooltip.js" %}"></script>
+<script src="{% static "js/classie.js" %}"></script>
+		
+<script type="text/javascript">
+	function closeWindow() {
+        netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite");
+        alert("This will close the window");
+        window.open('','_self');
+        window.close();
+    }
+</script>

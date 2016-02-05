@@ -1,0 +1,138 @@
+{% extends "base.html" %} 
+{% load mathfilters %}
+{% block header %}
+	<header class="mdl-layout__header mdl-layout__header--scroll mdl-color--deep-orange-500">	  			
+    	<div class="mdl-layout--large-screen-only mdl-layout__header-row">	    		
+	    	<div class=" mdl-layout-spacer"></div>
+	    	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+    			<form>
+		            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+		              	<i class="material-icons">search</i>
+		            </label>
+		            <div class="mdl-textfield__expandable-holder">
+		              	<input class="mdl-textfield__input" type="text" id="search-field">
+		            </div>
+	            </form>
+          	</div>
+		</div>
+    	<div class="mdl-typography--text-center ">
+    		<div class="mdl-layout-title">
+    			<h1 >{{page_title}}</h1>
+    		</div>
+
+    		
+    	</div>
+    	<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+    		<!---->
+    	</div>	
+    	<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--deep-orange-A400">
+    		
+    		<!--<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+	            <i class="material-icons" role="presentation">add</i>
+	            <span class="visuallyhidden">Add</span>
+          </button>-->
+    	</div>	
+    </header>
+   {% include "menu.html" %}
+{% endblock %}
+
+{% block contedor %}
+	
+  	<main class="mdl-layout__content mdl-color--grey-100">
+	  	<div class="mdl-grid demo-content mdl-layout__tab-panel is-active">
+	  
+	  	 	<section class="section--center mdl-color--white mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+	  	 	
+	  	 		
+	  	 	
+		  		<div class="mdl-cell mdl-cell--1-col  mdl-grid"></div>
+		  		<form action="."  method="post" role="form" class="mdl-grid">{% csrf_token %}		  		
+		    	
+		    	<div class=" mdl-cell mdl-cell--8-col  mdl-grid">
+		    	
+			    	
+				    	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="username" id="username" required/>
+						    <label class="mdl-textfield__label" for="username">Nombre de Usuario</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="password" id="password" required/>
+						    <label class="mdl-textfield__label" for="password">Contraseña</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="first_name" id="first_name" required/>
+						    <label class="mdl-textfield__label" for="first_name">Nombre</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="last_name" id="last_name" required/>
+						    <label class="mdl-textfield__label" for="last_name">Apellidos</label>
+					  	</div>
+					  	
+					  	
+					  	<input class="mdl-textfield__input" type="hidden" name="direccion" id="direccion" value="Dirección" />
+
+
+					   	<div class="mdl-cell--12-col mdl-textfield--align-right">
+						   	<a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+							  	CANCELAR
+							</a>				   		
+					  		<button class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--primary">
+							  	ENVIAR
+							</button>
+				    	</div>
+			    	
+			  	</div>
+				</form>
+			
+			</section>
+		</div>
+   	</main>
+    
+{% endblock %}
+{% block adicional-scripts %}
+<script type="text/javascript">
+			if ($('#img-person[src="#"]')) {
+                $('#img-person[src="#"]').hide();        
+            }
+            else {
+                $('#img-person:not([src="#"])').show();
+            }
+            $('.spiner').hide();
+            var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
+			var fileInput = $(':file').wrap(wrapper);
+
+			fileInput.change(function(){
+			    $this = $(this);
+			    $('#file').text($this.val());
+			})
+
+			$('#file').click(function(){
+			    fileInput.click();
+			    $('div.mdl-spinner').addClass("is-active");
+			}).show();
+
+			function readURL(input) {
+			    if (input.files && input.files[0]) {
+			        var reader = new FileReader();
+
+			        reader.onload = function (e) {
+			            $('#img-person').attr('src', e.target.result);
+			        }
+
+			        reader.readAsDataURL(input.files[0]);
+			    }
+			}
+		 	$("#img-person").load(function() {			  
+			  	$('#img-person:not([src="#"])').show();
+			  	$('div.mdl-spinner').removeClass("is-active");
+			  	$('div.snippet-demo').css( "padding", "0" );
+			}).attr('src', readURL(this));
+
+
+
+			$("#imgInp").change(function(){
+			    readURL(this);
+			});
+
+		</script>
+{% endblock %}

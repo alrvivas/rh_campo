@@ -1,0 +1,195 @@
+{% extends "base.html" %} 
+{% block header %}
+	<header class="mdl-layout__header mdl-layout__header--scroll mdl-color--deep-orange-500">	  			
+    	<div class="mdl-layout--large-screen-only mdl-layout__header-row">	    		
+	    	<div class=" mdl-layout-spacer"></div>
+	    	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+    			<form>
+		            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+		              	<i class="material-icons">search</i>
+		            </label>
+		            <div class="mdl-textfield__expandable-holder">
+		              	<input class="mdl-textfield__input" type="text" id="search-field">
+		            </div>
+	            </form>
+          	</div>
+		</div>
+    	<div class="mdl-typography--text-center ">
+    		<div class="mdl-layout-title">
+    			<h1 >{{page_title}}</h1>
+    		</div>
+
+    		
+    	</div>
+    	<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+    		<!---->
+    	</div>	
+    	<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--deep-orange-A400">
+    		
+    		<!--<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+	            <i class="material-icons" role="presentation">add</i>
+	            <span class="visuallyhidden">Add</span>
+          </button>-->
+    	</div>	
+    </header>
+   {% include "menu.html" %}
+{% endblock %}
+
+{% block contedor %}
+	
+  	<main class="mdl-layout__content mdl-color--grey-100">
+	  	<div class="mdl-grid demo-content mdl-layout__tab-panel is-active">
+	  
+	  	 	<section class="section--center mdl-color--white mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+	  	 	
+	  	 		
+	  	 	
+		  		<div class="mdl-cell mdl-cell--1-col  mdl-grid"></div>
+		  		<form action=""  method="post" role="form" class="mdl-grid form-add" enctype="multipart/form-data">{% csrf_token %}		  		
+		    	<div class=" mdl-cell mdl-cell--4-col mdl-card  mdl-grid">	    	
+		    		<div  class="mdl-cell--12-col mdl-typography--text-center mdl-grid snippet-group">
+		    			<div  id="file" class="mdl-cell--12-col mdl-typography--text-center">
+		    				<i class="material-icons md-128">camera_alt</i>
+		    			</div>
+		    			<div class="snippet-demo">
+	          				<div class="snippet-demo-container demo-spinner demo-spinner__spinner-single-color">
+		    					<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner "></div>	
+		    				</div>
+		    			</div>	
+			    		<input id="imgInp" name="imagen" type="file">
+			    		
+	   					<div class="mdl-cell--12-col">
+			    			<img id="img-person" src="#" alt="cliente" class="mdl-cell--12-col"  />
+			    		</div>
+	   				</div>
+		    	</div>
+		    	<div class=" mdl-cell mdl-cell--6-col  mdl-grid">
+
+		    			<input  name="id" id="id" type="hidden" value="{{empleado.pk}}">
+		    			<input  name="empleado" id="empleado" type="hidden" value="{{empleado.pk}}">
+						<input type="hidden" name="titulo" id="titulo" value="Periodo vacacional" required/>
+						<input type="hidden" name="descripcion" id="descripcion" value="Correspondiente a" required/>
+						<input type="hidden" name="fecha_inicio" id="fecha_inicio" value="2017-02-14" required/>
+						<input type="hidden" name="fecha_fin" id="fecha_fin" value="2017-02-16" required/>
+		    			
+		    			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="user-name" id="user-name" value="{{last_user}}" required/>
+						    <label class="mdl-textfield__label" for="user-name">Usuario</label>
+					  	</div>
+					  	<input id="id_user" name="user" type="hidden" value="{{last_user.pk}}">			    		
+			    		
+				    	
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="direccion" id="direccion" value="{{empleado.direccion}}" required/>
+						    <label class="mdl-textfield__label" for="direccion">Vive en</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="telefono" id="telefono" required/>
+						    <label class="mdl-textfield__label" for="telefono">Telefono</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="celular" id="celular" required/>
+						    <label class="mdl-textfield__label" for="celular">Celular</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+					  		<select class="mdl-textfield__input" type="text" name="departamento" id="departamento" required>
+					  			<option></option>
+					  			{% for d in departamentos %}
+					  				<option value="{{d.id}}">{{d.nombre}}</option>
+					  			{% endfor %}
+					  		</select>      
+						    <label class="mdl-textfield__label" for="sample3">Departamentos</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+					  		<select class="mdl-textfield__input" type="text" name="puesto" id="sample3" required>
+					  			<option></option>
+					  			{% for p in puestos %}
+					  				<option value="{{p.id}}">{{p.nombre}}</option>
+					  			{% endfor %}
+					  		</select>      
+						    <label class="mdl-textfield__label" for="sample3">Puesto</label>
+					  	</div>
+					   	<div class="mdl-cell--12-col mdl-textfield--align-right">
+						   	<a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+							  	CANCELAR
+							</a>				   		
+					  		<button class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--primary">
+							  	ENVIAR
+							</button>
+				    	</div>
+			    	
+			  	</div>
+				</form>
+			
+			</section>
+		</div>
+   	</main>
+    
+{% endblock %}
+{% block adicional-scripts %}
+	<script type="text/javascript">
+			if ($('#img-person[src="#"]')) {
+                $('#img-person[src="#"]').hide();        
+            }
+            else {
+                $('#img-person:not([src="#"])').show();
+            }
+            $('.spiner').hide();
+            var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
+			var fileInput = $(':file').wrap(wrapper);
+
+			fileInput.change(function(){
+			    $this = $(this);
+			    $('#file').text($this.val());
+			})
+
+			$('#file').click(function(){
+			    fileInput.click();
+			    $('div.mdl-spinner').addClass("is-active");
+			}).show();
+
+			function readURL(input) {
+			    if (input.files && input.files[0]) {
+			        var reader = new FileReader();
+
+			        reader.onload = function (e) {
+			            $('#img-person').attr('src', e.target.result);
+			        }
+
+			        reader.readAsDataURL(input.files[0]);
+			    }
+			}
+		 	$("#img-person").load(function() {			  
+			  	$('#img-person:not([src="#"])').show();
+			  	$('div.mdl-spinner').removeClass("is-active");
+			  	$('div.snippet-demo').css( "padding", "0" );
+			}).attr('src', readURL(this));
+
+
+
+			$("#imgInp").change(function(){
+			    readURL(this);
+			});
+
+	</script>
+	<script type="text/javascript">
+		var d = new Date();
+
+		var month_inicio = d.getMonth()+1;
+		var day_inicio = d.getDate();
+
+		var fecha_inicio = d.getFullYear()+1 + '-' +
+		    ((''+month_inicio).length<2 ? '0' : '') + month_inicio + '-' +
+		    ((''+day_inicio).length<2 ? '0' : '') + day_inicio;
+
+		var month_fin = d.getMonth()+1;
+		var day_fin = d.getDate()+4;
+
+		var fecha_fin = d.getFullYear()+1 + '-' +
+		    ((''+month_fin).length<2 ? '0' : '') + month_fin + '-' +
+		    ((''+day_fin).length<2 ? '0' : '') + day_fin;
+
+		$('#fecha_inicio').val(fecha_inicio);
+		$('#fecha_fin').val(fecha_fin);
+	</script>output
+{% endblock %}

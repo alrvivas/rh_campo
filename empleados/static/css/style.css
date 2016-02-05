@@ -1,0 +1,165 @@
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-64 { font-size: 64px; }
+.material-icons.md-128 { font-size: 128px; }
+.material-icons.md-256 { font-size: 256px; }
+
+.material-icons.orange500 { color: #FF9800; }
+.material-icons.deeporange500 { color: #FF5722; }
+.material-icons.green500 { color: #8BC34A; }
+.material-icons.red500 { color: #F44336; }
+.material-icons.purple500 { color: #9C27B0; }
+.material-icons.brown500 { color: #795548; }
+.material-icons.indigo500 { color: #3F51B5; }
+.material-icons.bluegrey500 { color: #607D8B; }
+.material-icons.pink500 { color: #E91E63; }
+
+.full-width {
+    width: 100%;
+}
+/* form starting stylings ------------------------------- */
+.group 			  { 
+  position:relative; 
+  margin-bottom:45px; 
+}
+.form input, .form select{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:100%;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+.form input:focus 		{ outline:none; }
+.form select:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+.form label 				 {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+.form input:focus ~ label, .form input:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#5264AE;
+}
+.form select:focus ~ label, .form input:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#5264AE;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:100%; }
+.bar:before, .bar:after{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#5264AE; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+.form input:focus ~ .bar:before, .form input:focus ~ .bar:after {
+  width:50%;
+}
+.form select:focus ~ .bar:before, .form select:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+.form input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+.form select:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+/*
+#file {
+    display:none;
+}
+*/
+.thumbnail{
+	min-height: 133px;
+    max-height: 222px;
+}
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: none;
+    outline-offset: 0px;
+}
+.btn.active:focus{ outline: none; border: none;text-decoration: none; }
+.btn.raised:hover {transition: box-shadow 0.1s cubic-bezier(0.4, 0, 0.2, 1);transition-delay: 0.1s;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);}    
+.btn.raised:active {box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2); transition-delay: 0s; border: none;background-color: transparent;}
+.btn > paper-ripple {border-radius: 0px; overflow: hidden;}
+.btn { display: inline-block; position: relative; width: 120px; height: 32px; line-height: 32px; border-radius: 2px;
+      font-size: 0.9em;  color: #646464;
+    }
+.btn-default{ color:#2196F3; border: none; }
+.btn-default:hover{	background-color: transparent;	color:#2196F3;border: none;}
+.btn-default:focus{background-color: transparent;outline: none;}
+
+/* AN
+
+
+ATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+
+@-webkit-keyframes spiner {
+	0%   {-webkit-transform: rotate(0deg);}
+	
+	100%   {-webkit-transform: rotate(360deg);}
+}
+
+@keyframes spiner {
+	0%   {-webkit-transform: rotate(0deg);}
+	
+	100%   {-webkit-transform: rotate(360deg);}
+}

@@ -1,0 +1,113 @@
+{% extends "base.html" %} 
+{% block header %}
+	<header class="mdl-layout__header mdl-layout__header--scroll mdl-color--deep-orange-500">	  			
+    	<div class="mdl-layout--large-screen-only mdl-layout__header-row">	    		
+	    	<div class=" mdl-layout-spacer"></div>
+	    	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+    			<form>
+		            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+		              	<i class="material-icons">search</i>
+		            </label>
+		            <div class="mdl-textfield__expandable-holder">
+		              	<input class="mdl-textfield__input" type="text" id="search-field">
+		            </div>
+	            </form>
+          	</div>
+		</div>
+    	<div class="mdl-typography--text-center ">
+    		<div class="mdl-layout-title">
+    			<h1 >{{page_title}}</h1>
+    		</div>
+
+    		
+    	</div>
+    	<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+    		<!---->
+    	</div>	
+    	<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--deep-orange-A400">
+    		
+    		<!--<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+	            <i class="material-icons" role="presentation">add</i>
+	            <span class="visuallyhidden">Add</span>
+          </button>-->
+          <a href="#" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--amber-500 mdl-shadow--4dp" id="add">
+	            <i class="material-icons mdl-color-text--white" role="presentation">mode_edit</i>	            
+	      	</a>	      	
+			{% include "menu-empleado.html" %}
+    	</div>	
+    </header>
+   {% include "menu.html" %}
+{% endblock %}
+
+{% block contedor %}
+	
+  	<main class="mdl-layout__content mdl-color--grey-100">
+	  	<div class="mdl-grid demo-content mdl-layout__tab-panel is-active">
+	  
+	  	 	<section class="section--center mdl-color--white mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+	  	 	
+	  	 		
+	  	 	
+		  		<div class="mdl-cell mdl-cell--1-col  mdl-grid"></div>
+		  		<form action=""  method="post" role="form" class="mdl-grid form-add" enctype="multipart/form-data">{% csrf_token %}		  		
+		    	<div class=" mdl-cell mdl-cell--4-col mdl-card  mdl-grid">	    	
+		    		
+		    	</div>
+		    	<div class=" mdl-cell mdl-cell--6-col  mdl-grid">
+		    			<input  name="id" id="id" type="hidden" value="{{empleado.pk}}">
+		    			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="edad" id="edad" value="{{empleado.edad}}" required/>
+						    <label class="mdl-textfield__label" for="edad">Edad</label>
+					  	</div>
+		    			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="estado_civil" id="estado_civil" value="{{empleado.estado_civil}}" required/>
+						    <label class="mdl-textfield__label" for="estado_civil">Estado Civil</label>
+					  	</div>
+		    			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="escolaridad" id="escolaridad" value="{{empleado.escolaridad}}" required/>
+						    <label class="mdl-textfield__label" for="escolaridad">Escolaridad</label>
+					  	</div>
+		    			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="direccion" id="direccion" value="{{empleado.direccion}}" required/>
+						    <label class="mdl-textfield__label" for="direccion">Vive en</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="telefono" id="telefono" value="{{empleado.telefono}}" required/>
+						    <label class="mdl-textfield__label" for="telefono">Telefono</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="celular" id="celular" value="{{empleado.celular}}" required/>
+						    <label class="mdl-textfield__label" for="celular">Celular</label>
+					  	</div>				  	
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="curp" id="curp" value="{{empleado.curp}}" required/>
+						    <label class="mdl-textfield__label" for="curp">C.U.R.P</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="rfc" id="rfc" value="{{empleado.rfc}}" required/>
+						    <label class="mdl-textfield__label" for="rfc">R.F.C.</label>
+					  	</div>
+					  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+						    <input class="mdl-textfield__input" type="text" name="numero_seguridad_social" id="numero_seguridad_social" value="{{empleado.numero_seguridad_social}}" required/>
+						    <label class="mdl-textfield__label" for="rfc">Número Seguridad Social</label>
+					  	</div>							  	
+					   	<div class="mdl-cell--12-col mdl-textfield--align-right">
+						   	<a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+							  	CANCELAR
+							</a>				   		
+					  		<button class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--primary">
+							  	ENVIAR
+							</button>
+				    	</div>
+			    	
+			  	</div>
+				</form>
+			
+			</section>
+		</div>
+   	</main>
+    
+{% endblock %}
+{% block adicional-scripts %}
+>
+{% endblock %}

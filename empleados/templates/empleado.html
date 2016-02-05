@@ -1,0 +1,317 @@
+{% extends "base.html" %} 
+{% load static from staticfiles %}
+{% load humanize %}
+{% block staticos %}
+	<link rel="stylesheet" href="{% static "css/mdl-jquery-modal-dialog.css" %}">
+	<style type="text/css">
+	html, body {
+        height: 100%;
+        width: 100% ;
+    }
+		#map {
+	        height: 400px !important;
+	        width: 100% !important;
+      	}
+      	
+	</style>
+    
+{% endblock %}
+{% block header %}
+	<header class="mdl-layout__header mdl-layout__header--scroll mdl-color--deep-orange-500">	  			
+		<div class="mdl-layout--large-screen-only mdl-layout__header-row ">	    		
+	    	<div class=" mdl-layout-spacer"></div>
+	    	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+				<form>
+		            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+		              	<i class="material-icons">search</i>
+		            </label>
+		            <div class="mdl-textfield__expandable-holder">
+		              	<input class="mdl-textfield__input" type="text" id="search-field">
+		            </div>
+	            </form>
+	      	</div>
+		</div>
+		<div class="mdl-typography--text-center ">
+			<div class="mdl-layout-title">
+				<h1 >{{page_title}}</h1>
+			</div>
+
+			
+		</div>
+		<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+			<!---->
+		</div>	
+		<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--deep-orange-700">
+			<a href="#datos" class="mdl-layout__tab is-active">Datos</a>
+          	<a href="#vacaciones" class="mdl-layout__tab">Vacaciones</a>
+          	<a href="#actas" class="mdl-layout__tab">Actas Administrativas</a>
+          	<a href="#mapa" class="mdl-layout__tab">Mapa</a>
+			<a href="#" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--amber-500 mdl-shadow--4dp" id="add">
+	            <i class="material-icons mdl-color-text--white" role="presentation">mode_edit</i>	            
+	      	</a>	      	
+			{% include "menu-empleado.html" %}
+			    
+		</div>
+		
+			
+	</header>
+	{% include "menu.html" %}
+{% endblock %}
+
+{% block contedor %}
+  	<main class="mdl-layout__content mdl-color--grey-100">
+	  	<div class="mdl-grid demo-content mdl-layout__tab-panel is-active" id="datos">
+
+	  		<div class="mdl-grid">
+	  			<div class="demo-cards mdl-cell mdl-cell--4-col mdl-grid mdl-grid--no-spacing">	
+			  		<div class="demo-card-image mdl-card mdl-shadow--2dp ">
+						<div class="mdl-card__title mdl-card--expand"></div>
+						<div class="mdl-card__actions">
+							<span class="demo-card-image__filename">{{empleado.user}}</span>
+						</div>
+					</div>
+				</div>	  		
+		    	<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-grid ">
+
+		    		<h2 class="mdl-cell mdl-cell--12-col">Datos Personales</h2>
+		    		<ul>
+		    			<li><strong>Nombre: </strong>{{empleado.user.get_full_name}}</li>
+		    			<li><strong>Edad: </strong>{{empleado.edad}}</li>
+		    			<li><strong>Estado Civil</strong> {{empleado.estado_civil}}</li>
+		    			<li><strong>Escolaridad</strong>{{empleado.escolaridad}}</li>
+		    			<li><strong>Vive en: </strong>{{empleado.direccion}}</li>
+		    			<li><strong>Telefono: </strong>{{empleado.telefono}}</li>
+		    			<li><strong>Celular: </strong>{{empleado.celular}}</li>
+		    			<li><strong>CUPR: </strong>{{empleado.curp}}</li>
+		    			<li><strong>R.F.C.: </strong>{{empleado.rfc}}</li>
+		    			<li><strong>Número de Seguro Solcial: </strong>{{empleado.numero_seguridad_social}}</li>
+		    		</ul>
+		    	</div>
+		    </div>
+		    <div class="mdl-grid">
+		    	<div class="demo-cards mdl-cell mdl-cell--4-col mdl-grid mdl-grid--no-spacing">	
+			  		
+				</div>
+		    	<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-grid ">
+
+		    		<h2 class="mdl-cell mdl-cell--12-col">Datos Empresariales</h2>
+		    		<ul>
+		    			<li><strong>Empresa: </strong></li>
+		    			<li id="antiguedad"><strong>Antiguedad: </strong> {{empleado.fecha_ingreso|timesince}}</li>	
+		    			<li><strong>Departamento: </strong>{{empleado.departamento}}</li>    			
+		    			<li><strong>Salario de Contratación: </strong>${{empleado.salario_contratacion|intcomma}} MXN</li>
+		    			<li><strong>Salario Actual: </strong>${{empleado.salario_actual|intcomma}} MXN</li>
+		    			<li><strong>Puesto: </strong>{{empleado.puesto}}</li>
+		    			<li><strong>Contrato: </strong>{{empleado.tipo_contrato}}</li>
+		    		</ul>
+		    	</div>
+		    	<div class="mdl-tooltip mdl-tooltip--left" for="antiguedad">
+					{{empleado.fecha_ingreso}}
+				</div>	
+	  		</div>
+	  		<div class="mdl-grid">
+	  			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid ">
+	  				{% for a in archivos %}
+	  					<div class="mdl-select-file mdl-typography--text-center"><i class="material-icons md-128 mdl-color-text--red-500">insert_drive_file</i><br />{{a.nombre}}</div>
+	  				{% endfor %}
+	  				<div id="show-action" class="mdl-select-file mdl-js-ripple-effect mdl-typography--text-center">
+					   <i class="material-icons md-128 mdl-color-text--blue-500">file_upload</i>
+					</div>
+					<div class="mdl-tooltip mdl-tooltip--large" for="show-action">
+						Subir Archivo
+					</div>
+
+
+	  			</div>
+	  		</div>
+	  		
+	  	</div>
+	  	<div class="mdl-grid demo-content mdl-layout__tab-panel" id="vacaciones">
+	  		<div class="mdl-grid">
+	  			<section class="demo-cards mdl-cell mdl-cell--4-col mdl-grid mdl-grid--no-spacing">	
+			  		<div class="demo-card-image mdl-card mdl-shadow--2dp ">
+						<div class="mdl-card__title mdl-card--expand"></div>
+						<div class="mdl-card__actions">
+							<span class="demo-card-image__filename">{{empleado.user}}</span>
+						</div>
+					</div>
+				</section>
+		    	<section class="mdl-cell mdl-cell--8-col mdl-grid ">
+		    		<!--<div class="mdl-grid ">-->
+		    		{% for vacaciones in vacaciones %}	
+		    			<div class="mdl-color--white mdl-shadow--2dp  mdl-cell mdl-cell--12-col  vacaciones">
+		    				
+		    				<button id="modificar"  class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon menu-lower-right">
+	  								<i class="material-icons">more_vert</i>
+							</button>						
+							<ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right modificar" for="modificar">
+			              		<li class="mdl-menu__item"><a href="{{vacaciones.get_absolute_url_editar}}">Modificar</a></li>
+				            </ul>		
+	    				 	<div class=" mdl-cell mdl-cell--12-col">
+
+		    				 	<h2 class="mdl-cell mdl-cell--11-col">{{vacaciones.titulo}}</h2>
+		    				 	<ul>
+					    			<li><strong>Descripcion: </strong>{{vacaciones.descripcion}}</li>
+					    		</ul>
+					    		<div class="mdl-grid">
+					    			<div class="mdl-cell mdl-cell--4-col">
+					    				<time datetime="{{vacaciones.fecha_inicio|date:'Y-m-d'}}" class="icon">
+										  	<em>{{vacaciones.fecha_inicio|date:'l'}}</em>
+										  	<strong>{{vacaciones.fecha_inicio|date:'F'}}</strong>
+										  	<span>{{vacaciones.fecha_inicio|date:'d'}}</span>
+										</time>
+					    			</div>
+					    			<div class="mdl-cell mdl-cell--4-col  mdl-typography--text-center">	    			
+					    				<i class="material-icons md-128 mdl-color-text--blue-500" style="line-height: 2em;">weekend</i>
+					    			</div>
+					    			<div class="mdl-cell mdl-cell--4-col">
+										<time datetime="{{vacaciones.fecha_fin|date:'Y-m-d'}}2014-09-20" class="icon">
+										  	<em>{{vacaciones.fecha_fin|date:'l'}}</em>
+										  	<strong>{{vacaciones.fecha_fin|date:'F'}}</strong>
+										  	<span>{{vacaciones.fecha_fin|date:'d'}}</span>
+										</time>
+									</div>
+								</div>
+	    				 	</div>	
+				    	</div>
+		    		{% endfor%}
+		    		<!--</div>-->
+		    	</section>
+		    </div>
+	  	</div>
+	  	<div class="mdl-grid demo-content mdl-layout__tab-panel " id="actas">
+	  		<div class="mdl-grid">
+	  			<div class="demo-cards mdl-cell mdl-cell--4-col mdl-grid mdl-grid--no-spacing">	
+			  		<div class="demo-card-image mdl-card mdl-shadow--2dp ">
+						<div class="mdl-card__title mdl-card--expand"></div>
+						<div class="mdl-card__actions">
+							<span class="demo-card-image__filename">{{empleado.user}}</span>
+						</div>
+					</div>
+				</div>	  		
+		    	<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-grid ">
+		    		<h2 class="mdl-cell mdl-cell--12-col">Actas Administrativas</h2>
+		    		
+		    	</div>		    	
+		    </div>
+		    <div class="mdl-grid">
+		  			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid ">
+		  				
+						<div class="mdl-select-file mdl-typography--text-center"><i class="material-icons md-128 mdl-color-text--red-500">insert_drive_file</i><br />Acta Uno</div>
+		  				
+		  				<div id="subir-acta" class="mdl-select-file mdl-js-ripple-effect mdl-typography--text-center">
+						   <i class="material-icons md-128 mdl-color-text--blue-500">file_upload</i>
+						</div>
+						<div class="mdl-tooltip mdl-tooltip--large" for="subir-acta">
+							Subir Acta
+						</div>
+
+
+		  			</div>
+	  			</div>
+	  	</div>
+	  	<div class="mdl-grid demo-content mdl-layout__tab-panel " id="mapa">
+	  		<div class="mdl-grid">
+	  			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid ">
+			  		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--7-col">
+						<input id="address" class="mdl-textfield__input" type="text" value="{{empleado.direccion}}">
+
+						<button id="submit" type="button"  class="mdl-button mdl-js-button mdl-button--icon mdl-color--red-500" style="right: 0;">
+							<i class="material-icons mdl-color-text--white">place</i>
+						</button>
+					</div>
+					<div class="mdl-tooltip" for="submit">
+						Lozalizar Dimicilio
+					</div>
+					
+				</div>
+
+			</div>
+			<div id="map" class=""></div>
+	  	</div>	
+		    
+			
+   	</main>
+{% endblock %}
+
+{% block adicional-scripts %}
+    <script>
+	    var map = null;
+	    var marker = null;
+		function initMap() {
+	  		map = new google.maps.Map(document.getElementById('map'), {
+	    		zoom: 10,
+		    	center: {lat: 20.057188, lng: -102.722364}
+		  	});
+		  	var geocoder = new google.maps.Geocoder();
+
+		  	document.getElementById('submit').addEventListener('click', function() {
+		    	geocodeAddress(geocoder, map);
+		  	});
+		}
+
+		function geocodeAddress(geocoder, resultsMap) {
+		  	var address = document.getElementById('address').value;
+		  	geocoder.geocode({'address': address}, function(results, status) {
+		    	if (status === google.maps.GeocoderStatus.OK) {
+					resultsMap.setCenter(results[0].geometry.location);
+					marker = new google.maps.Marker({
+						map: resultsMap,
+						position: results[0].geometry.location,
+						title: 'Click para zoom'
+					});
+					map.addListener('center_changed', function() {
+					    // 3 seconds after the center of the map has changed, pan back to the
+					    // marker.
+					    window.setTimeout(function() {
+					      map.panTo(marker.getPosition());
+					      map.setCenter(marker.getPosition());
+					    }, 4000);
+				  	});
+					marker.addListener('click', function() {
+				    	map.setZoom(16);
+				    	map.setCenter(marker.getPosition());
+				  	}); 
+		   		 } else {
+		      		alert('Ups :o ' + status);
+		   		}
+		  	});
+		}
+		
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5N66CIJFrw4Cv4CqLUMfOkGygPXskCHU&signed_in=true&callback=initMap" async defer></script>
+
+	<script src="{% static "js/mdl-jquery-modal-dialog.js"  %}"></script>
+	<script type="text/javascript">
+		$( '.demo-card-image.mdl-card' ).css( "background", "url('{{ empleado.imagen.url }}') center / cover" );
+	</script>
+
+	<script>
+	    
+	    $('#show-action').click(function () {
+	        showDialog({
+	            title: 'Subir Archivo',
+	            text: "<form action='' method='post' enctype='multipart/form-data' role='form' class='mdl-grid'>{% csrf_token %}<input class='mdl-textfield__input' type='hidden' name='empleado' id='empleado' value='{{empleado.id}}'/><div class='mdl-cell mdl-cell--12-col  mdl-grid'><div class='mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col'><input class='mdl-textfield__input' type='text' name='nombre' id='nombre' required/><label class='mdl-textfield__label' for='nombre'>Nombre de Archivo</label></div><div class='mdl-textfield mdl-js-textfield mdl-textfield--file mdl-cell--12-col'><input class='mdl-textfield__input' placeholder='File' type='text' id='uploadFile' readonly/><div class='mdl-button mdl-button--primary mdl-button--icon mdl-button--file'><i class='material-icons'>attach_file</i><input type='file' name='archivo' id='uploadBtn'></div></div><div class='mdl-cell--12-col mdl-textfield--align-right'><a href='' id='negative' class='mdl-button mdl-js-button mdl-js-ripple-effect'>CANCELAR</a><button class='mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--primary'>ENVIAR</button></div></div></form>",
+	             
+	           
+	        });
+	    });   
+	</script>
+	<script>
+	$(function () {   
+		$("div.vacaciones").each(function(i) {
+		  $(this).find('.menu-lower-right').attr('id', 'modificar-' + i+'-vacaciones');
+		  $(this).find('.modificar').attr('for', 'modificar-' + i +'-vacaciones');
+		});
+	});    
+	</script>
+	
+	<script type="text/javascript">
+
+		document.getElementById("uploadBtn").onchange = function() {
+			document.getElementById("uploadFile").value = this.files[0].name;
+		};
+	</script>
+{% endblock %}

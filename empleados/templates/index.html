@@ -1,0 +1,92 @@
+{% extends "base.html" %} 
+{% block header %}
+	<header class="mdl-layout__header mdl-layout__header-bacground mdl-layout__header--scroll mdl-color--transparent">	  			
+	<div class="mdl-layout--large-screen-only mdl-layout__header-row">	    		
+    	<div class=" mdl-layout-spacer"></div>
+    	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+			<form>
+	            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+	              	<i class="material-icons">search</i>
+	            </label>
+	            <div class="mdl-textfield__expandable-holder">
+	              	<input class="mdl-textfield__input" type="text" id="search-field">
+	            </div>
+            </form>
+      	</div>
+	</div>
+	<div class="mdl-typography--text-center ">
+		<div class="mdl-layout-title">
+			<h1 >Forrajera San Andres</h1>
+		</div>
+
+		
+	</div>
+	<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+		<!---->
+	</div>	
+		
+	</header>
+	{% include "menu.html" %}
+{% endblock %}
+
+{% block contedor %}
+	<main class="mdl-layout__content mdl-color--grey-100">
+  	<div class="mdl-grid demo-content mdl-layout__tab-panel is-active">	
+	  	<div class="mdl-grid">
+	  		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid ">
+			    <a href="add-cliente.html" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--blue-grey-500">person_add</i>
+			      <p>Añadir Cliente</p>
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid ">
+			    <a href="punto-venta.html" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--pink-500">store</i>
+			      <p>Punto de Venta</p>
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid ">
+			    <a href="credito-cobranza.html" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--brown-500">account_balance_wallet</i>
+			      <p>Credito y Cobranza</p>
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid ">
+			    <a href="productos.html" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--green-500">local_florist</i>
+			      <p>Productos</p>
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid ">
+			    <a href="{% url 'empleados' %}" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--deep-orange-500">group</i>
+			      <p>Empleados</p>
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid ">
+			    <a href="#" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--purple-500">insert_chart</i>
+			      <p>Reportes</p>
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid ">
+			    <a href="#" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--indigo-500">settings</i>
+			      <p>Configuración</p>
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid ">
+			    <a href="#" onclick = "closeWindow();" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--red-500">power_settings_new</i>
+			      <p>Salir</p>
+			    </a>
+			</div>
+		</div>
+  	</div>			
+	</main>
+{% endblock %}
+	
+
+
+		    	
+				
