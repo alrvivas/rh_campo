@@ -3,8 +3,6 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
 	#url(r'^$', 'empleados.views.index', name='index'),
 	url(r'^$', 'empleados.views.empleados', name='empleados'),	
-	url(r'^/login/$', 'empleados.views.LoginView', name='login'),
-    url(r'^/logout/$', 'empleados.views.LogoutView', name='logout'),	
 	url(r'^perfil/(?P<empleado_id>[-\w]+)$', 'empleados.views.empleado', name='empleado'), 
 	url(r'^add-user/$', 'empleados.views.add_user', name='add-user'),
 	url(r'^add-empleado/(?P<empleado_id>[-\w]+)$', 'empleados.views.add_empleado', name='add-empleado'), 

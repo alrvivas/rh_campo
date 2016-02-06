@@ -5,7 +5,9 @@ from django.conf import settings
 urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),    
-    url(r'^$', 'empleados.views.index', name='index'),  
+    url(r'^$', 'empleados.views.index', name='index'),	
+	url(r'^/login/$', 'empleados.views.LoginView', name='login'),
+    url(r'^/logout/$', 'empleados.views.LogoutView', name='logout'),  
     url(r'^empleados/', include('empleados.urls')),   
 )
 
