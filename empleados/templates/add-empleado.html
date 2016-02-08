@@ -104,7 +104,7 @@
 					  		<select class="mdl-textfield__input" type="text" name="puesto" id="sample3" required>
 					  			<option></option>
 					  			{% for p in puestos %}
-					  				<option value="{{p.id}}">{{p.nombre}}</option>
+					  				<option value="{{p.id}}">{{p.nombre}}-{{p.departamento.nombre}}</option>
 					  			{% endfor %}
 					  		</select>      
 						    <label class="mdl-textfield__label" for="sample3">Puesto</label>
