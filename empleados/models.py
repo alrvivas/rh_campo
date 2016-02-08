@@ -38,7 +38,7 @@ class Empleado(models.Model):
 	telefono = models.CharField(max_length=15,null=True)
 	edad = models.PositiveIntegerField(null=True)
 	estado_civil = models.CharField(max_length=150,null=True)
-	escolaridad = models.CharField(max_length=50,null=True)
+	escolaridad = models.CharField(max_length=80,null=True)
 	preparacion_academica = models.CharField(max_length=140,null=True)	
 	departamento = models.ForeignKey(Departamento,null=True,)
 	puesto = models.ForeignKey(Puesto,null=True,)
