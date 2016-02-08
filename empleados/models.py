@@ -45,7 +45,7 @@ class Empleado(models.Model):
 	tipo_contrato = models.ForeignKey(Contrato,null=True)
 	salario_contratacion = models.PositiveIntegerField(null=True)
 	salario_actual = models.PositiveIntegerField(null=True)
-	imagen = models.ImageField("Imagen Categoria", upload_to="images/categorias", blank=True, null=True)
+	imagen = models.ImageField("Imagen Empleado", upload_to="images/empleados", blank=True, null=True,default='images/empleado/default-01.png)
 	
 	@models.permalink
 	def get_absolute_url(self):
