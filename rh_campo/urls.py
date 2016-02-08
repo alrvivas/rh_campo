@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 )
 
 handler404 = 'productos.views.file_not_found_404' 
-if settings.DEBUG == True:
+if settings.DEBUG == False:
     urlpatterns += patterns('',
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, }),
    )
