@@ -146,7 +146,7 @@ def empleado(request,empleado_id):
 
 @login_required(login_url='/login/')
 def editar_empleado(request,empleado_id):
-    page_title = "Editar Datos Persoanles"
+    page_title = "Editar Datos Personales"
     user = request.user
     empleado = get_object_or_404(Empleado,id=empleado_id)
     periodo_vacaional = Periodo_Vacaional.objects.filter(empleado=empleado)
